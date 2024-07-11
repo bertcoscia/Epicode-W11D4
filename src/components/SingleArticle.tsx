@@ -6,18 +6,23 @@ interface SingleArticleProps {
   article: IArticles;
 }
 
-const SingleArticle = (props: SingleArticleProps) => {
+const SingleArticle = ({ article }: SingleArticleProps) => {
+  const date = new Date(article.published_at);
+  const localeString = date.toLocaleString();
+
   return (
     <Col xs={12} md={4} className="my-3">
-      <Card>
-        <Link to={`article/${props.article.id}`}>
-          <Card.Img variant="top" src={props.article.image_url} />
-        </Link>
-        <Card.Body>
-          <Card.Title className="line-clamp-2">{props.article.title}</Card.Title>
-          <Card.Text className="line-clamp-2">{props.article.summary}</Card.Text>
-        </Card.Body>
-      </Card>
+      <Link to={`article/${article.id}`} className="text-decoration-none">
+        <Card>
+          <Card.Img variant="top" src={article.image_url} />
+          <Card.Body>
+            <Card.Title className="line-clamp-2">{article.title}</Card.Title>
+            <small>{article.news_site}</small>
+            <Card.Text className="line-clamp-2 mt-2">{article.summary}</Card.Text>
+            <p>{localeString.slice(0, 10)}</p>
+          </Card.Body>
+        </Card>
+      </Link>
     </Col>
   );
 };

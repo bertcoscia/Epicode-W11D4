@@ -19,6 +19,7 @@ const FetchComponent = () => {
       })
       .then(data => {
         setArticles(data.results);
+        console.log(articles);
       })
       .catch(error => console.log(error));
   };

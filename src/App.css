@@ -4,3 +4,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.card-img-top {
+  width: 100% !important;
+ height: 150px;
