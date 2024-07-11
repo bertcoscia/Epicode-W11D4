@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { IArticles } from "../interfaces/IArticles";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Spinner } from "react-bootstrap";
 
 import SingleArticle from "./SingleArticle";
 const url = "https://api.spaceflightnewsapi.net/v4/articles";
@@ -29,13 +29,21 @@ const FetchComponent = () => {
   }, []);
 
   return (
-    <Container>
-      <Row>
-        {articles.map(article => (
-          <SingleArticle key={article.id} article={article} />
-        ))}
-      </Row>
-    </Container>
+    <>
+      {articles.length > 0 ? (
+        <Container>
+          <Row>
+            {articles.map(article => (
+              <SingleArticle key={article.id} article={article} />
+            ))}
+          </Row>
+        </Container>
+      ) : (
+        <div className="position-relative vh-100">
+          <Spinner animation="grow" variant="primary" className="position-absolute top-50 start-50" />
+        </div>
+      )}
+    </>
   );
 };
 
