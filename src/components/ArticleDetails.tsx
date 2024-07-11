@@ -36,9 +36,12 @@ const ArticleDetails = () => {
     <>
       {article ? (
         <>
-          <img src={article.image_url} className="w-100 object-fit-cover" style={{ height: "40vh" }} />
-          <h1 className="text-center my-3">{article.title}</h1>
-          <Container>
+          <div className="w-100 position-relative" style={{ backgroundImage: `url(${article.image_url})`, backgroundSize: "cover", height: "40vh" }}>
+            <h1 className="text-center my-3 text-white position-absolute bottom-0" style={{ left: "15px", backgroundColor: "rgba(0, 0, 0, .5)", backdropFilter: "blur(10px)" }}>
+              {article.title}
+            </h1>
+          </div>
+          <Container className="my-3">
             <div className="d-flex justify-content-between align-items-center border-bottom border-1">
               <h2 className="lead">{article.news_site}</h2>
               <p>Published: {pubDate.slice(0, 10)}</p>
